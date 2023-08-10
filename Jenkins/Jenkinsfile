@@ -2,7 +2,7 @@
 pipeline {
     agent {
         node {
-            label 'maven'
+            label 'slave-build'
         }
     }
 environment {
