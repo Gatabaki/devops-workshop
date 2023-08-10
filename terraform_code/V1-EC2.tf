@@ -5,10 +5,10 @@ provider "aws" {
 resource "aws_instance" "demo-server" {
     ami = "ami-053b0d53c279acc90"
     instance_type = "t2.micro"
-    key_name = "devops-key.pem"
+    key_name = "devops-key"
     //security_groups = [ "demo-sg" ]
     vpc_security_group_ids = [aws_security_group.demo-sg.id]
-    subnet_id = aws_subnet.dpp-public-subnet-01.id 
+    subnet_id = aws_subnet.gatabaki-public-subnet-01.id 
 for_each = toset(["jenkins-master", "build-slave", "ansible"])
    tags = {
      Name = "${each.key}"
@@ -18,7 +18,7 @@ for_each = toset(["jenkins-master", "build-slave", "ansible"])
 resource "aws_security_group" "demo-sg" {
   name        = "demo-sg"
   description = "SSH Access"
-  vpc_id = aws_vpc.dpp-vpc.id 
+  vpc_id = aws_vpc.gatabaki-vpc.id 
   
   ingress {
     description      = "SHH access"
